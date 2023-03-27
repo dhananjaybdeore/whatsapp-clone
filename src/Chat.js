@@ -1,5 +1,11 @@
 import { Avatar, IconButton } from "@mui/material";
-import { AttachFile, MoreVert, SearchOutlined } from "@mui/icons-material";
+import {
+  AttachFile,
+  InsertEmoticon,
+  MoreVert,
+  SearchOutlined,
+  Mic,
+} from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import "./Chat.scss";
 function Chat() {
@@ -27,8 +33,21 @@ function Chat() {
           </IconButton>
         </div>
       </div>
-      <div className="chat__body"> </div>
-      <div className="chat__footer"></div>
+      <div className="chat__body">
+        <p className={`chat__message ${true && "chat__receiver"}`}>
+          <span className="chat__name">Dhananjay Deore</span>
+          Hey There
+          <span className="chat__timestamp">3:56pm</span>
+        </p>
+      </div>
+      <div className="chat__footer">
+        <InsertEmoticon />
+        <form action="">
+          <input type="text" placeholder="Type a message" />
+          <button type="submit">Send a message</button>
+        </form>
+        <Mic />
+      </div>
     </div>
   );
 }
