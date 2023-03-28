@@ -76,7 +76,12 @@
       }
     }
     button {
-      display: none;
+      // display: none;
+      border-radius: 5px;
+      border: 1px solid gray;
+      margin-left: 10px;
+      color: rgb(82, 82, 82);
+      font-weight: 700;
     }
   }
   .MuiSvgIcon-root {
