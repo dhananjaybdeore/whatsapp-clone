@@ -9,13 +9,20 @@ import {
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Chat.scss";
+import { useStateValue } from "./StateProvider";
+// import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
+
 import db from "./firebase";
 function Chat() {
   const [input, setInput] = useState("");
   const [seed, setSeed] = useState("");
   const { roomId } = useParams();
   const [roomName, setRoomName] = useState("");
-  const [messages, setMessages] = useState([{}]);
+  const [messages, setMessages] = useState([]);
+  const [{ user }, dispatch] = useStateValue();
+  // console.log(user.uid);
+
   useEffect(() => {
     if (roomId) {
       db.collection("rooms")
@@ -27,33 +34,25 @@ function Chat() {
         .collection("messages")
         .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) =>
-          // console.log(snapshot.docs.map((doc) => doc.data)),
-
           setMessages(snapshot.docs.map((doc) => doc.data()))
-        );
-      // db.collection("rooms")
-      //   .doc(roomId)
-      //   .collection("messages")
-      //   .onSnapshot((snapshot) => (console.log(snapshot)));
-
-      db.collection("rooms")
-        .doc(roomId)
-        .collection("messages")
-        .onSnapshot(
-          (snapshot) => console.log(snapshot.docs.map((doc) => doc.data))
-          // console.log(snapshot.docs)
-          // setMessages(snapshot.docs.map((doc) => doc.data))
         );
     }
   }, [roomId]);
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
-    // console.log(messages.map(message) => message);
-    // messages.map((message) => console.log(message.data()));
   }, [roomId]);
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(input);
+    db.collection("rooms")
+      .doc(roomId)
+      .collection("messages")
+      .add({
+        name: user.displayName,
+        message: input,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        uid: user.uid,
+      });
     setInput("");
   };
 
@@ -63,7 +62,26 @@ function Chat() {
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
         <div className="chat__headerInfo">
           <h3>{roomName}</h3>
-          <p>Last seen...</p>
+          {/* <p> */}
+          {/* {new Date(messages[messages.length-1].timestamp?.toDate()).toUTCString()} */}
+          {/* {if(messages.length!==0)
+          console.log("Not sero")} */}
+          {/* {new Date(messages[messages.length-1].timestamp?.toDate()).toUTCString()} */}
+          <p>
+            Last activity:{" "}
+            {messages.length !== 0 ? (
+              <>
+                {/* {new Date(
+                  messages[messages.length - 1].timestamp?.toDate()
+                ).toUTCString()} */}
+                {new Date(messages[messages.length-1].timestamp?.toDate()).toLocaleDateString()}
+                &nbsp;
+                {new Date(messages[messages.length-1].timestamp?.toDate()).toLocaleTimeString()}
+              </>
+            ) : (
+              <span>No activity in the Chat</span>
+            )}
+          </p>
         </div>
         <div className="chat__headerRight">
           <IconButton>
@@ -76,15 +94,21 @@ function Chat() {
             <MoreVert />
           </IconButton>
         </div>
+        {/* </div> */}
       </div>
       <div className="chat__body">
         {messages.map((message) => (
-          <p className={`chat__message ${true && "chat__receiver"}`}>
+          <p
+            className={`chat__message ${message.uid === user.uid &&
+              "chat__receiver"}`}
+          >
             <span className="chat__name">{message.name}</span>
             {message.message}
             <span className="chat__timestamp">
-              {/* {new Date(message.timestamp?.toDate().toUTCString())} */}
-              
+              {/* {new Date(message.timestamp?.toDate()).toUTCString()} */}
+              {new Date(message.timestamp?.toDate()).toLocaleDateString()}
+              &nbsp;
+              {new Date(message.timestamp?.toDate()).toLocaleTimeString()}
             </span>
           </p>
         ))}

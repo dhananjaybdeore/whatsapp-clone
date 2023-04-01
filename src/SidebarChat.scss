@@ -2,13 +2,19 @@
   display: flex;
   padding: 20px;
   cursor: pointer;
+  // color: black;
   border-bottom: 1px solid #f6f6f6;
   &:hover {
     background-color: #ebebeb;
   }
   // text-decoration: none;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
 .sidebarChat__info {
+  // color: black;
   margin-left: 15px;
   h2 {
     font-size: 16px;
