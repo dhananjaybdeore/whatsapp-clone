@@ -82,6 +82,11 @@
       margin-left: 10px;
       color: rgb(82, 82, 82);
       font-weight: 700;
+      cursor: pointer;
+      transition: all linear 0.1s;
+      &:hover {
+        background-color: rgb(207, 206, 206);
+      }
     }
   }
   .MuiSvgIcon-root {
