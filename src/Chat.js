@@ -84,9 +84,7 @@ function Chat() {
           <IconButton>
             <SearchOutlined />
           </IconButton>
-          <IconButton>
-            <AttachFile />
-          </IconButton>
+
           <IconButton>
             <MoreVert />
           </IconButton>
@@ -115,7 +113,9 @@ function Chat() {
         <IconButton>
           <InsertEmoticon />
         </IconButton>
-
+        <IconButton>
+          <AttachFile />
+        </IconButton>
         <form action="">
           <input
             value={input}

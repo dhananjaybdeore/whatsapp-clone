@@ -2,8 +2,8 @@
   display: flex;
   padding: 20px;
   cursor: pointer;
-  max-height: 46px;
-  overflow:hidden;
+  max-height: 40px;
+  overflow: hidden;
   // color: black;
   border-bottom: 1px solid #f6f6f6;
   &:hover {
@@ -27,7 +27,7 @@ a {
   margin-left: 15px;
   h2 {
     font-size: 16px;
-    margin-bottom: 8px;
+    // margin-bottom: 8px;
   }
   p {
     max-lines: 1 !important;

@@ -1,22 +1,26 @@
 .chat {
-  flex: 0.65;
+  flex: 0.7;
   display: flex;
   flex-direction: column;
 }
 .chat__header {
-  padding: 20px;
+  padding: 8px;
   display: flex;
   align-items: center;
+  padding-left: 20px;
   border-bottom: 1px solid lightgray;
 }
 .chat__headerInfo {
   flex: 1;
   padding-left: 20px;
   h3 {
+    font-size: 16px;
     margin-bottom: 3px;
     font-weight: 500;
   }
   p {
+    font-size: 14px;
+
     color: gray;
   }
 }
@@ -30,8 +34,9 @@
   background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
   background-repeat: repeat;
   background-position: center;
-  padding: 30px;
+  padding: 30px 60px;
   padding-top: 40px;
+
   overflow: scroll;
 }
 .chat__message {
@@ -80,7 +85,7 @@
     display: flex;
     input {
       flex: 1;
-      border-radius: 30px;
+      border-radius: 10px;
       border: none;
       padding: 10px;
       margin: 10px;
