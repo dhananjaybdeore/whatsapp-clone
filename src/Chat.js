@@ -12,6 +12,9 @@ import { useParams } from "react-router-dom";
 import "./Chat.scss";
 import { useStateValue } from "./StateProvider";
 import firebase from "firebase/compat/app";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import db from "./firebase";
 function Chat() {
@@ -21,6 +24,33 @@ function Chat() {
   const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
   const [{ user }, dispatch] = useStateValue();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const clearMessages = () => {
+    const collectionRef = db
+      .collection("rooms")
+      .doc(roomId)
+      .collection("messages");
+    collectionRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.delete();
+        });
+      })
+      .then(() => {
+        console.log("All documents in the collection have been deleted");
+      })
+      .catch((error) => {
+        console.error("Error deleting documents: ", error);
+      });
+    handleClose();
+  };
 
   useEffect(() => {
     if (roomId) {
@@ -52,6 +82,11 @@ function Chat() {
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           uid: user.uid,
           photoURL: user.photoURL,
+        });
+      db.collection("rooms")
+        .doc(roomId)
+        .update({
+          latestUpdate: firebase.firestore.FieldValue.serverTimestamp(),
         });
     }
     setInput("");
@@ -86,8 +121,17 @@ function Chat() {
           </IconButton>
 
           <IconButton>
-            <MoreVert />
+            <MoreVert onClick={handleClick} />
           </IconButton>
+
+          {/* <Button onClick={handleClick}>Open Menu</Button> */}
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={clearMessages}>Clear Messages</MenuItem>
+          </Menu>
         </div>
       </div>
       <div className="chat__body">

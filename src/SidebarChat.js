@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SidebarChat.scss";
 import db from "./firebase";
-import { Add, InsertComment } from "@mui/icons-material";
-function SidebarChat({ id, name, addNewChat }) {
+import firebase from "firebase/compat/app";
+
+import { InsertComment } from "@mui/icons-material";
+function SidebarChat({ id, name, addNewChat, latest }) {
   const [seed, setSeed] = useState();
   const [messages, setMessages] = useState("");
   useEffect(() => {
@@ -27,6 +29,8 @@ function SidebarChat({ id, name, addNewChat }) {
     if (roomName) {
       db.collection("rooms").add({
         name: roomName,
+        latestUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+        // latestUpdate:
       });
     }
   };
@@ -36,6 +40,14 @@ function SidebarChat({ id, name, addNewChat }) {
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
         <div className="sidebarChat__info">
           <h2> {name}</h2>
+          {/* <p>{latestUpdate}</p> */}
+          <span>
+            {/* {new Date(latestUpdate).toLocaleDateString()} */}
+            {new Date(latest.latestUpdate?.toDate()).toLocaleTimeString()}
+            {/* <br /> */}
+            {/* {new Date(latest.latestUpdate?.toDate()).toLocaleDateString()} */}
+
+          </span>
           <p>{messages[0]?.message}</p>
         </div>
       </div>

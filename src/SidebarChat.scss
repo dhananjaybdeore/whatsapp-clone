@@ -4,6 +4,7 @@
   cursor: pointer;
   max-height: 40px;
   overflow: hidden;
+  position: relative;
   // color: black;
   border-bottom: 1px solid #f6f6f6;
   &:hover {
@@ -32,5 +33,12 @@ a {
   p {
     max-lines: 1 !important;
     line-height: 2;
+  }
+  span {
+    color: gray;
+    font-size: 13px;
+    position: absolute;
+    right: 10px;
+    // display:none;
   }
 }

@@ -19,7 +19,7 @@ function Sidebar() {
   useEffect(() => {
     const unsubscribe = db
       .collection("rooms")
-      // .orderBy("name", "asc")
+      .orderBy("latestUpdate", "desc")
       .onSnapshot((snapshot) =>
         setRooms(
           snapshot.docs.map((doc) => ({
@@ -65,7 +65,14 @@ function Sidebar() {
       <div className="sidebar__chats">
         <SidebarChat addNewChat />
         {rooms.map((room) => (
-          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+          <>
+            <SidebarChat
+              key={room.id}
+              id={room.id}
+              name={room.data.name}
+              latest={room.data}
+            />
+          </>
         ))}
       </div>
     </div>
