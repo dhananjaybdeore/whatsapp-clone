@@ -40,12 +40,12 @@ function Sidebar() {
           <IconButton>
             <DonutLarge />
           </IconButton>
-          <IconButton>
+          {/* <IconButton>
             <Chat />
-          </IconButton>
-          <IconButton>
+          </IconButton> */}
+          {/* <IconButton>
             <MoreVert />
-          </IconButton>
+          </IconButton> */}
           <IconButton>
             <Logout
               onClick={() => {

@@ -5,7 +5,7 @@ import "./SidebarChat.scss";
 import db from "./firebase";
 import firebase from "firebase/compat/app";
 
-import { InsertComment } from "@mui/icons-material";
+import { InsertComment, Chat } from "@mui/icons-material";
 function SidebarChat({ id, name, addNewChat, latest }) {
   const [seed, setSeed] = useState();
   const [messages, setMessages] = useState("");
@@ -55,7 +55,7 @@ function SidebarChat({ id, name, addNewChat, latest }) {
   ) : (
     <div onClick={createChat} className="sidebarChat">
       <h1>
-        <InsertComment /> Create a new Group Chat
+        <Chat /> Create a new Group Chat
       </h1>
     </div>
   );
