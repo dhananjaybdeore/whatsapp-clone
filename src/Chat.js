@@ -7,7 +7,7 @@ import {
   Mic,
   Send,
 } from "@mui/icons-material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./Chat.scss";
 import { useStateValue } from "./StateProvider";
@@ -25,6 +25,11 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const [{ user }, dispatch] = useStateValue();
   const [anchorEl, setAnchorEl] = useState(null);
+  const bottomRef = useRef(null);
+  useEffect(() => {
+    //  scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -152,6 +157,8 @@ function Chat() {
             </span>
           </p>
         ))}
+        {/* <div id="box"></div> */}
+        <div ref={bottomRef} />
       </div>
       <div className="chat__footer">
         <IconButton>

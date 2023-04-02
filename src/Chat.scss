@@ -51,6 +51,10 @@
 .chat__receiver {
   margin-left: auto;
   background-color: #dcf8c6;
+  .chat__name {
+    display: none;
+  }
+  margin-bottom: 10px;
 }
 .chat__name {
   position: absolute;
