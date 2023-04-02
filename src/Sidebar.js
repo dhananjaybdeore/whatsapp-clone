@@ -1,11 +1,5 @@
-import {
-  DonutLarge,
-  Chat,
-  MoreVert,
-  SearchOutlined,
-  Logout,
-} from "@mui/icons-material";
-import { Avatar, Icon, IconButton } from "@mui/material";
+import { DonutLarge, SearchOutlined, Logout } from "@mui/icons-material";
+import { Avatar, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import "./Sidebar.scss";
 import SidebarChat from "./SidebarChat";
@@ -71,6 +65,7 @@ function Sidebar() {
               id={room.id}
               name={room.data.name}
               latest={room.data}
+              url={`https://avatars.dicebear.com/api/human/${room.data.seed}.svg`}
             />
           </>
         ))}

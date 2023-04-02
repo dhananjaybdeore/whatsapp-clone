@@ -12,7 +12,6 @@ import { useParams } from "react-router-dom";
 import "./Chat.scss";
 import { useStateValue } from "./StateProvider";
 import firebase from "firebase/compat/app";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -27,7 +26,6 @@ function Chat() {
   const [anchorEl, setAnchorEl] = useState(null);
   const bottomRef = useRef(null);
   useEffect(() => {
-    //  scroll to bottom every time messages change
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
   const handleClick = (event) => {
@@ -61,7 +59,9 @@ function Chat() {
     if (roomId) {
       db.collection("rooms")
         .doc(roomId)
-        .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+        .onSnapshot((snapshot) => {setRoomName(snapshot.data().name)
+        setSeed(snapshot.data().seed);
+        });
 
       db.collection("rooms")
         .doc(roomId)
@@ -72,9 +72,9 @@ function Chat() {
         );
     }
   }, [roomId]);
-  useEffect(() => {
-    setSeed(Math.floor(Math.random() * 5000));
-  }, [roomId]);
+  // useEffect(() => {
+  //   setSeed(Math.floor(Math.random() * 5000));
+  // }, [roomId]);
   const sendMessage = (e) => {
     e.preventDefault();
     if (input.trim()) {
@@ -146,7 +146,7 @@ function Chat() {
               "chat__receiver"}`}
           >
             <span className="chat__name">
-              <img src={message.photoURL} alt="user image" />
+              <img src={message.photoURL} alt="Profile" />
               {message.name}
             </span>
             {message.message}

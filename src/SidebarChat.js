@@ -1,12 +1,12 @@
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SidebarChat.scss";
 import db from "./firebase";
 import firebase from "firebase/compat/app";
 
-import { InsertComment, Chat } from "@mui/icons-material";
-function SidebarChat({ id, name, addNewChat, latest }) {
+import { Chat } from "@mui/icons-material";
+function SidebarChat({ id, name, addNewChat, latest, url }) {
   const [seed, setSeed] = useState();
   const [messages, setMessages] = useState("");
   useEffect(() => {
@@ -29,6 +29,7 @@ function SidebarChat({ id, name, addNewChat, latest }) {
     if (roomName) {
       db.collection("rooms").add({
         name: roomName,
+        seed: Math.floor(Math.random() * 5000),
         latestUpdate: firebase.firestore.FieldValue.serverTimestamp(),
         // latestUpdate:
       });
@@ -37,7 +38,8 @@ function SidebarChat({ id, name, addNewChat, latest }) {
   return !addNewChat ? (
     <Link to={`rooms/${id}`}>
       <div className="sidebarChat">
-        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+        {console.log(url)}
+        <Avatar src={url} />
         <div className="sidebarChat__info">
           <h2> {name}</h2>
           {/* <p>{latestUpdate}</p> */}
@@ -46,7 +48,6 @@ function SidebarChat({ id, name, addNewChat, latest }) {
             {new Date(latest.latestUpdate?.toDate()).toLocaleTimeString()}
             {/* <br /> */}
             {/* {new Date(latest.latestUpdate?.toDate()).toLocaleDateString()} */}
-
           </span>
           <p>{messages[0]?.message}</p>
         </div>
