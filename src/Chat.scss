@@ -71,8 +71,14 @@
   }
 }
 .chat__timestamp {
-  font-size: x-small;
-  margin-left: 10px;
+  font-size: small;
+  // margin-left: 10px;
+  position: relative;
+  color: gray;
+  display: inline-block;
+  width: -moz-fit-content;
+  width: 100%;
+  text-align: right;
 }
 .chat__footer {
   display: flex;
