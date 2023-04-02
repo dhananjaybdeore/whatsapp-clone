@@ -8,8 +8,10 @@ import { useStateValue } from "./StateProvider";
 
 // import { BrowsrRouter as  Route } from "express";
 function App() {
-  const [{user}, dispatch] = useStateValue();
-
+  const [{ user }, dispatch] = useStateValue();
+  window.onbeforeunload = function() {
+    return "Data will be lost if you leave the page, are you sure?";
+  };
   // const [user, setUser] = useState(null);
   return (
     // BEM naming convention

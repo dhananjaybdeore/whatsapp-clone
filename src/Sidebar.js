@@ -3,6 +3,7 @@ import {
   Chat,
   MoreVert,
   SearchOutlined,
+  Logout,
 } from "@mui/icons-material";
 import { Avatar, Icon, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
@@ -44,6 +45,14 @@ function Sidebar() {
           </IconButton>
           <IconButton>
             <MoreVert />
+          </IconButton>
+          <IconButton>
+            <Logout
+              onClick={() => {
+                if (window.confirm("Are you sure you want to log out?"))
+                  document.location.reload();
+              }}
+            />
           </IconButton>
         </div>
       </div>

@@ -2,14 +2,23 @@
   display: flex;
   padding: 20px;
   cursor: pointer;
+  max-height: 46px;
+  overflow:hidden;
   // color: black;
   border-bottom: 1px solid #f6f6f6;
   &:hover {
     background-color: #ebebeb;
   }
-  // text-decoration: none;
+  h1 {
+    color: gray;
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
-a{
+a {
   text-decoration: none;
   color: black;
 }
@@ -19,5 +28,9 @@ a{
   h2 {
     font-size: 16px;
     margin-bottom: 8px;
+  }
+  p {
+    max-lines: 1 !important;
+    line-height: 2;
   }
 }

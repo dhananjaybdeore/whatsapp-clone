@@ -1,8 +1,9 @@
-import { Avatar } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SidebarChat.scss";
 import db from "./firebase";
+import { Add, InsertComment } from "@mui/icons-material";
 function SidebarChat({ id, name, addNewChat }) {
   const [seed, setSeed] = useState();
   const [messages, setMessages] = useState("");
@@ -22,7 +23,7 @@ function SidebarChat({ id, name, addNewChat }) {
   }, []);
   const createChat = () => {
     // some database stuff
-    const roomName = prompt("Enter the room name");
+    const roomName = prompt("Enter the Title of the group");
     if (roomName) {
       db.collection("rooms").add({
         name: roomName,
@@ -41,7 +42,9 @@ function SidebarChat({ id, name, addNewChat }) {
     </Link>
   ) : (
     <div onClick={createChat} className="sidebarChat">
-      <h1>Add a new Chat</h1>
+      <h1>
+        <InsertComment /> Create a new Group Chat
+      </h1>
     </div>
   );
 }

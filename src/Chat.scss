@@ -31,6 +31,7 @@
   background-repeat: repeat;
   background-position: center;
   padding: 30px;
+  padding-top: 40px;
   overflow: scroll;
 }
 .chat__message {
@@ -40,7 +41,7 @@
   background-color: white;
   border-radius: 10px;
   width: fit-content;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 .chat__receiver {
   margin-left: auto;
@@ -54,9 +55,10 @@
   font-weight: 800;
   display: flex;
   align-items: center;
-  Avatar {
-    height: 5px !important;
-  }
+  // Avatar {
+  //   height: 5px !important;
+  // }
+  cursor: pointer;
   img {
     height: 30px;
     width: 30px;
@@ -81,6 +83,7 @@
       border-radius: 30px;
       border: none;
       padding: 10px;
+      margin: 10px;
 
       &:focus {
         outline: none;
@@ -89,14 +92,14 @@
     button {
       // display: none;
       border-radius: 5px;
-      border: 1px solid gray;
-      margin-left: 10px;
+      border: transparent;
+      // margin-left: 10px;
       color: rgb(82, 82, 82);
       font-weight: 700;
       cursor: pointer;
       transition: all linear 0.1s;
       &:hover {
-        background-color: rgb(207, 206, 206);
+        background-color: unset;
       }
     }
   }

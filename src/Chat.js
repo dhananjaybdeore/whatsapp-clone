@@ -5,6 +5,7 @@ import {
   MoreVert,
   SearchOutlined,
   Mic,
+  Send,
 } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -50,7 +51,7 @@ function Chat() {
           message: input,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           uid: user.uid,
-          photoURL:user.photoURL
+          photoURL: user.photoURL,
         });
     }
     setInput("");
@@ -93,13 +94,14 @@ function Chat() {
       </div>
       <div className="chat__body">
         {messages.map((message) => (
-          
           <p
             className={`chat__message ${message.uid === user.uid &&
               "chat__receiver"}`}
           >
-          
-            <span className="chat__name"><img src={message.photoURL}/>{message.name}</span>
+            <span className="chat__name">
+              <img src={message.photoURL} alt="user image" />
+              {message.name}
+            </span>
             {message.message}
             <span className="chat__timestamp">
               {new Date(message.timestamp?.toDate()).toLocaleDateString()}
@@ -110,7 +112,10 @@ function Chat() {
         ))}
       </div>
       <div className="chat__footer">
-        <InsertEmoticon />
+        <IconButton>
+          <InsertEmoticon />
+        </IconButton>
+
         <form action="">
           <input
             value={input}
@@ -121,10 +126,15 @@ function Chat() {
             placeholder="Type a message"
           />
           <button onClick={sendMessage} type="submit">
-            Send a message
+            <IconButton>
+              <Send />
+            </IconButton>
+            {/* Send a message */}
           </button>
         </form>
-        <Mic />
+        <IconButton>
+          <Mic />
+        </IconButton>
       </div>
     </div>
   );
