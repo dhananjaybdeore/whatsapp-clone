@@ -16,16 +16,17 @@ function Sidebar() {
   const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
-    const unsubscribe = db.collection("rooms")
-    .orderBy("name", "asc")
-    .onSnapshot((snapshot) =>
-      setRooms(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      )
-    );
+    const unsubscribe = db
+      .collection("rooms")
+      // .orderBy("name", "asc")
+      .onSnapshot((snapshot) =>
+        setRooms(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
     return () => {
       unsubscribe();
     };
