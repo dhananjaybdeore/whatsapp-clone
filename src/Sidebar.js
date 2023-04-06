@@ -1,10 +1,16 @@
-import { DonutLarge, SearchOutlined, Logout } from "@mui/icons-material";
+import {
+  DonutLarge,
+  SearchOutlined,
+  Logout,
+  GitHub,
+} from "@mui/icons-material";
 import { Avatar, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import "./Sidebar.scss";
 import SidebarChat from "./SidebarChat";
 import db from "./firebase";
 import { useStateValue } from "./StateProvider";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   const [rooms, setRooms] = useState([]);
@@ -33,6 +39,14 @@ function Sidebar() {
         <div className="sidebar__headerRight">
           <IconButton>
             <DonutLarge />
+          </IconButton>
+          <IconButton>
+            <Link
+              to={"https://github.com/dhananjaybdeore/whatsapp-clone"}
+              target="blank"
+            >
+              <GitHub />
+            </Link>
           </IconButton>
           {/* <IconButton>
             <Chat />

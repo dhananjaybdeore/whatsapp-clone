@@ -1,5 +1,5 @@
 .sidebar {
-  flex: 0.30;
+  flex: 0.3;
   display: flex;
   flex-direction: column;
 }
@@ -42,8 +42,18 @@
     padding: 10px;
   }
 }
-.sidebar__chats{
+.sidebar__chats {
   flex: 1;
   background-color: white;
   overflow: scroll;
+}
+
+@media screen and (max-width: 800px) {
+  .sidebar {
+    flex: .01;
+    display: none;
+    // display: none;
+    transform: translate(-400px);
+    transition: all 0.3s linear;
+  }
 }

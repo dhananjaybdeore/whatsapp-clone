@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
 }
+@media screen and (max-width: 800px) {
+  .chat {
+    flex: 1;
+  }
+}
 .chat__header {
   padding: 8px;
   display: flex;
