@@ -148,8 +148,10 @@
     // background-color: black;
     // color: black;
     // display: none;
+
     .MuiSvgIcon-root {
       color: white;
+      transition: all 0.4s ease;
       background-color: black;
       transform: rotateY(180deg);
     }
