@@ -1,10 +1,7 @@
 import { Avatar, IconButton } from "@mui/material";
 import {
   AttachFile,
-  InsertEmoticon,
   MoreVert,
-  SearchOutlined,
-  Mic,
   Send,
   ArrowForwardIos,
 } from "@mui/icons-material";
@@ -98,14 +95,14 @@ function Chat() {
     }
     setInput("");
   };
-  const arrowClicked=()=>{
+  const arrowClicked = () => {
     // console.log("Hello");
-    let sidebar=document.getElementsByClassName("sidebar")[0];
+    let sidebar = document.getElementsByClassName("sidebar")[0];
     // console.log(d);
     sidebar.classList.toggle("show");
-    let arrow=document.getElementsByClassName("arrow")[0];
+    let arrow = document.getElementsByClassName("arrow")[0];
     arrow.classList.toggle("shift");
-  }
+  };
 
   return (
     <div className="chat">
