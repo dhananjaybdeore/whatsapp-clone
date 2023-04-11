@@ -6,6 +6,7 @@ import {
   SearchOutlined,
   Mic,
   Send,
+  ArrowForwardIos,
 } from "@mui/icons-material";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -59,8 +60,9 @@ function Chat() {
     if (roomId) {
       db.collection("rooms")
         .doc(roomId)
-        .onSnapshot((snapshot) => {setRoomName(snapshot.data().name)
-        setSeed(snapshot.data().seed);
+        .onSnapshot((snapshot) => {
+          setRoomName(snapshot.data().name);
+          setSeed(snapshot.data().seed);
         });
 
       db.collection("rooms")
@@ -96,10 +98,23 @@ function Chat() {
     }
     setInput("");
   };
+  const arrowClicked=()=>{
+    // console.log("Hello");
+    let sidebar=document.getElementsByClassName("sidebar")[0];
+    // console.log(d);
+    sidebar.classList.toggle("show");
+    let arrow=document.getElementsByClassName("arrow")[0];
+    arrow.classList.toggle("shift");
+  }
 
   return (
     <div className="chat">
       <div className="chat__header">
+        <div className="arrow">
+          <IconButton>
+            <ArrowForwardIos onClick={arrowClicked} className="arrow" />
+          </IconButton>
+        </div>
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
         <div className="chat__headerInfo">
           <h3>{roomName}</h3>
@@ -121,9 +136,9 @@ function Chat() {
           </p>
         </div>
         <div className="chat__headerRight">
-          <IconButton>
+          {/* <IconButton>
             <SearchOutlined />
-          </IconButton>
+          </IconButton> */}
 
           <IconButton>
             <MoreVert onClick={handleClick} />
@@ -161,9 +176,9 @@ function Chat() {
         <div ref={bottomRef} />
       </div>
       <div className="chat__footer">
-        <IconButton>
+        {/* <IconButton>
           <InsertEmoticon />
-        </IconButton>
+        </IconButton> */}
         <IconButton>
           <AttachFile />
         </IconButton>
@@ -183,9 +198,9 @@ function Chat() {
             {/* Send a message */}
           </button>
         </form>
-        <IconButton>
+        {/* <IconButton>
           <Mic />
-        </IconButton>
+        </IconButton> */}
       </div>
     </div>
   );

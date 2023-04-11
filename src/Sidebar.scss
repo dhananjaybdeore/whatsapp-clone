@@ -50,10 +50,22 @@
 
 @media screen and (max-width: 800px) {
   .sidebar {
-    flex: .01;
-    display: none;
+    flex: 0.01;
     // display: none;
-    transform: translate(-400px);
+    // display: none;
+    // transform: translate(-400px);
     transition: all 0.3s linear;
+    display: none;
+  }
+  .show {
+    background-color: white;
+    display: flex;
+    position: fixed;
+    z-index: 3;
+    height: 100%;
+    transition: all 0.3s linear;
+    width: 100vw;
+
+    // transform: translate(400px);
   }
 }

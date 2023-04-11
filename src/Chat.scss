@@ -1,12 +1,14 @@
+.arrow {
+  display: none;
+  position: fixed;
+  top: 10vh;
+  background-color: white;
+  border-radius: 50%;
+}
 .chat {
   flex: 0.7;
   display: flex;
   flex-direction: column;
-}
-@media screen and (max-width: 800px) {
-  .chat {
-    flex: 1;
-  }
 }
 .chat__header {
   padding: 8px;
@@ -32,7 +34,7 @@
 .chat__headerRight {
   display: flex;
   justify-content: space-between;
-  min-width: 100px;
+  // min-width: 100px;
 }
 .chat__body {
   flex: 1;
@@ -126,5 +128,54 @@
   .MuiSvgIcon-root {
     padding: 10px;
     color: gray;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .arrow {
+    padding: 3px;
+    display: block;
+    z-index: 30;
+    color: white;
+    background-color: black;
+    // transform: rotateY(50deg);
+    // transform: translate(1.1);
+    // transform: rotate3d(30);
+  }
+  .shift {
+    position: fixed;
+    right: 5vw;
+    // background-color: black;
+    // color: black;
+    // display: none;
+    .MuiSvgIcon-root {
+      color: white;
+      background-color: black;
+      transform: rotateY(180deg);
+    }
+  }
+
+  .chat {
+    flex: 1;
+  }
+  .chat__body {
+    flex: 1 1;
+    background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
+    background-repeat: repeat;
+    background-position: center;
+    padding: 30px 10px;
+    padding-top: 40px;
+    overflow: scroll;
+  }
+  .chat__footer {
+    .MuiSvgIcon-root {
+      padding: 0px;
+      color: gray;
+    }
+    form {
+      input {
+        margin: 0;
+      }
+    }
   }
 }
