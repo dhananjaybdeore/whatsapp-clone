@@ -77,21 +77,16 @@ function Chat() {
   const sendMessage = (e) => {
     e.preventDefault();
     if (input.trim()) {
-      db.collection("rooms")
-        .doc(roomId)
-        .collection("messages")
-        .add({
-          name: user.displayName,
-          message: input,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          uid: user.uid,
-          photoURL: user.photoURL,
-        });
-      db.collection("rooms")
-        .doc(roomId)
-        .update({
-          latestUpdate: firebase.firestore.FieldValue.serverTimestamp(),
-        });
+      db.collection("rooms").doc(roomId).collection("messages").add({
+        name: user.displayName,
+        message: input,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        uid: user.uid,
+        photoURL: user.photoURL,
+      });
+      db.collection("rooms").doc(roomId).update({
+        latestUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+      });
     }
     setInput("");
   };
@@ -154,8 +149,9 @@ function Chat() {
       <div className="chat__body">
         {messages.map((message) => (
           <p
-            className={`chat__message ${message.uid === user.uid &&
-              "chat__receiver"}`}
+            className={`chat__message ${
+              message.uid === user.uid && "chat__receiver"
+            }`}
           >
             <span className="chat__name">
               <img src={message.photoURL} alt="Profile" />
@@ -176,9 +172,9 @@ function Chat() {
         {/* <IconButton>
           <InsertEmoticon />
         </IconButton> */}
-        <IconButton>
+        {/* <IconButton>
           <AttachFile />
-        </IconButton>
+        </IconButton> */}
         <form action="">
           <input
             value={input}

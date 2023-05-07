@@ -24,14 +24,13 @@ function SidebarChat({ id, name, addNewChat, latest, url }) {
     setSeed(Math.floor(Math.random() * 5000));
   }, []);
   const createChat = () => {
-    // some database stuff
+    // database stuff
     const roomName = prompt("Enter the Title of the group");
     if (roomName) {
       db.collection("rooms").add({
         name: roomName,
         seed: Math.floor(Math.random() * 5000),
         latestUpdate: firebase.firestore.FieldValue.serverTimestamp(),
-        // latestUpdate:
       });
     }
   };

@@ -6,17 +6,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import { useStateValue } from "./StateProvider";
 
-// import { BrowsrRouter as  Route } from "express";
 function App() {
   const [{ user }, dispatch] = useStateValue();
-  window.onbeforeunload = function() {
+  window.onbeforeunload = function () {
     return "Data will be lost if you leave the page, are you sure?";
   };
-  // const [user, setUser] = useState(null);
+
   return (
     // BEM naming convention
     <div className="app">
-      {/* <h1>Deee</h1> */}
       {!user ? (
         <Login />
       ) : (
