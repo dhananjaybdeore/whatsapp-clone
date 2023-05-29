@@ -4,7 +4,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBrVcIwQrbFA1EWCDabN1IO6Ya9ynSL7AY",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "whatsapp-clone-eae85.firebaseapp.com",
   projectId: "whatsapp-clone-eae85",
   storageBucket: "whatsapp-clone-eae85.appspot.com",

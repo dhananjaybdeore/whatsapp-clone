@@ -37,7 +37,7 @@ function SidebarChat({ id, name, addNewChat, latest, url }) {
   return !addNewChat ? (
     <Link to={`rooms/${id}`}>
       <div className="sidebarChat">
-        {console.log(url)}
+        {/* {console.log(url)} */}
         <Avatar src={url} />
         <div className="sidebarChat__info">
           <h2> {name}</h2>
